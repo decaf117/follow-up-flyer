@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VanScoy Wedding · Guest Information</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --eggplant:    #2D1B4E;
+    --eggplant-mid:#3E2668;
+    --forest:      #2D5A3D;
+    --forest-mid:  #3B7A52;
+    --sage:        #7BAF8E;
+    --gold:        #C9A84C;
+    --gold-light:  #E2C97E;
+    --cream:       #F5F0E8;
+    --cream-warm:  #EDE7D9;
+    --text-dark:   #1A1028;
+    --text-mid:    #3C2E56;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background-color: var(--eggplant);
+    color: var(--cream);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+ 
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #1a0d33 0%, #2D1B4E 45%, #1e3d2a 100%);
+  }
+ 
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(45,90,61,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(62,38,104,0.5) 0%, transparent 70%);
+    pointer-events: none;
+  }
+ 
+  .hero-leaf {
+    display: block;
+    margin: 0 auto 24px;
+    opacity: 0.85;
+  }
+ 
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+ 
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+ 
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .hero-date {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--sage);
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+ 
+  .hero-divider {
+    display: block;
+    margin: 28px auto 0;
+    opacity: 0.6;
+  }
+ 
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+ 
+  /* ── SECTION CARDS ── */
+  .card {
+    background: linear-gradient(145deg, rgba(62,38,104,0.45), rgba(30,20,55,0.6));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin-top: 32px;
+    position: relative;
+    backdrop-filter: blur(4px);
+  }
+ 
+  .card-green {
+    background: linear-gradient(145deg, rgba(45,90,61,0.4), rgba(20,40,28,0.6));
+    border-color: rgba(123,175,142,0.25);
+  }
+ 
+  .card-accent {
+    background: linear-gradient(145deg, rgba(201,168,76,0.12), rgba(45,90,61,0.35));
+    border-color: rgba(201,168,76,0.4);
+  }
+ 
+  .card-alert {
+    background: linear-gradient(145deg, rgba(120,30,30,0.4), rgba(80,15,15,0.55));
+    border: 1px solid rgba(220,80,80,0.35);
+  }
+ 
+  .section-label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+ 
+  .section-label.green { color: var(--sage); }
+ 
+  .card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+ 
+  .card-green h2 { border-color: rgba(123,175,142,0.25); }
+  .card-alert h2 { border-color: rgba(220,80,80,0.3); }
+ 
+  /* ── SCHEDULE ── */
+  .schedule-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .schedule-row:last-child { border-bottom: none; }
+ 
+  .schedule-time {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 1rem;
+    white-space: nowrap;
+    min-width: 160px;
+  }
+ 
+  .schedule-event {
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--cream);
+  }
+ 
+  /* ── DRESS CODE ── */
+  .dress-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+ 
+  .dress-block {
+    background: rgba(0,0,0,0.2);
+    border-radius: 3px;
+    padding: 18px 20px;
+    border-left: 3px solid var(--gold);
+  }
+ 
+  .dress-block.pj { border-left-color: var(--sage); }
+ 
+  .dress-block-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+ 
+  .dress-block.pj .dress-block-label { color: var(--sage); }
+ 
+  .dress-block p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+ 
+  .pj-note {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.65;
+    background: rgba(45,90,61,0.2);
+    border-radius: 3px;
+    padding: 14px 18px;
+    border-left: 3px solid var(--sage);
+  }
+ 
+  /* ── DRINKS / FOOD ── */
+  .info-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .pill {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+  }
+ 
+  .pill.sage {
+    background: rgba(123,175,142,0.15);
+    border-color: rgba(123,175,142,0.35);
+    color: var(--sage);
+  }
+ 
+  .ticket-box {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+ 
+  .ticket-item {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 3px;
+    padding: 16px 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  .ticket-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+ 
+  .ticket-desc {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.75);
+    margin-top: 6px;
+    line-height: 1.45;
+  }
+ 
+  .body-text {
+    font-size: 0.92rem;
+    line-height: 1.72;
+    color: rgba(245,240,232,0.9);
+  }
+ 
+  .body-text strong { color: var(--cream); font-weight: 700; }
+ 
+  .no-liquor {
+    margin-top: 14px;
+    font-size: 2rem;
+    color: rgba(245,240,232,0.65);
+    font-style: italic;
+  }
+ 
+  /* ── ALERTS ── */
+  .alert-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(220,80,80,0.15);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .alert-item:last-child { border-bottom: none; }
+ 
+  /* remove bullets from semantic lists used for layout */
+  .card-alert ul,
+  .ticket-box {
+    list-style: none;
+    padding: 0;
+  }
+ 
+  .ticket-box dt {
+    order: 2;
+  }
+  .ticket-box dd {
+    order: 1;
+    margin: 0;
+  }
+ 
+  .alert-icon {
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+ 
+  /* ── RSVP BANNER ── */
+  .rsvp-banner {
+    margin-top: 32px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(45,90,61,0.3));
+    border: 1.5px solid rgba(201,168,76,0.5);
+    border-radius: 4px;
+    padding: 32px 40px;
+    text-align: center;
+  }
+ 
+  .rsvp-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+ 
+  .rsvp-banner p {
+    font-size: 0.92rem;
+    color: rgba(245,240,232,0.85);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+ 
+  .rsvp-deadline {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 2px;
+    padding: 6px 18px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+ 
+  .btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--forest-mid), var(--forest));
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 2px;
+    border: 1px solid rgba(123,175,142,0.4);
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+ 
+  .btn:hover {
+    background: linear-gradient(135deg, #4a9965, var(--forest-mid));
+    transform: translateY(-1px);
+  }
+ 
+  /* ── HONEYMOON ── */
+  .honeymoon {
+    margin-top: 32px;
+    text-align: center;
+    padding: 32px 40px;
+    background: linear-gradient(145deg, rgba(62,38,104,0.35), rgba(45,90,61,0.3));
+    border: 1px solid rgba(123,175,142,0.25);
+    border-radius: 4px;
+  }
+ 
+  .honeymoon .section-label { text-align: center; }
+ 
+  .honeymoon h2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+ 
+  .honeymoon p {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 20px;
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+ 
+  footer a {
+    color: var(--sage);
+    text-decoration: none;
+    opacity: 0.75;
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .card { padding: 28px 22px; }
+    .dress-split { grid-template-columns: 1fr; }
+    .schedule-time { min-width: 120px; font-size: 0.9rem; }
+    .rsvp-banner, .honeymoon { padding: 28px 22px; }
+    .ticket-box { gap: 10px; }
+  }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- HERO -->
+<header class="hero">
+  <!-- Botanical SVG motif -->
+  <svg class="hero-leaf" width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M60 55 C60 55 10 40 8 15 C8 15 30 5 60 30" stroke="#7BAF8E" stroke-width="1.2" fill="none" opacity="0.8"/>
+    <path d="M60 55 C60 55 110 40 112 15 C112 15 90 5 60 30" stroke="#7BAF8E" stroke-width="1.2" fill="none" opacity="0.8"/>
+    <path d="M60 8 L60 55" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/>
+    <circle cx="60" cy="8" r="2.5" fill="#C9A84C" opacity="0.7"/>
+    <path d="M30 28 C38 22 50 28 60 30" stroke="#7BAF8E" stroke-width="0.6" fill="none" opacity="0.5"/>
+    <path d="M90 28 C82 22 70 28 60 30" stroke="#7BAF8E" stroke-width="0.6" fill="none" opacity="0.5"/>
+  </svg>
+ 
+  <p class="hero-eyebrow">Guest Information</p>
+  <h1>The <em>VanScoy</em> Wedding</h1>
+  <p class="hero-date">We're so glad you're celebrating with us</p>
+ 
+  <svg class="hero-divider" width="200" height="18" viewBox="0 0 200 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="0" y1="9" x2="82" y2="9" stroke="#C9A84C" stroke-width="0.8" opacity="0.5"/>
+    <path d="M90 9 C93 5 97 5 100 9 C103 13 107 13 110 9" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.8"/>
+    <line x1="118" y1="9" x2="200" y2="9" stroke="#C9A84C" stroke-width="0.8" opacity="0.5"/>
+    <circle cx="100" cy="9" r="1.5" fill="#C9A84C" opacity="0.6"/>
+  </svg>
+</header>
+ 
+<main class="container">
+ 
+  <!-- TIME SCHEDULE -->
+  <section class="card" aria-labelledby="schedule-heading">
+    <p class="section-label" aria-hidden="true">The Day</p>
+    <h2 id="schedule-heading">Time Schedule</h2>
+ 
+    <dl>
+      <div class="schedule-row">
+        <dt class="schedule-time">Arrive by 2:45 pm</dt>
+        <dd class="schedule-event">Find your seat and get settled</dd>
+      </div>
+      <div class="schedule-row">
+        <dt class="schedule-time">3:00 – 3:30 pm</dt>
+        <dd class="schedule-event">Ceremony</dd>
+      </div>
+      <div class="schedule-row">
+        <dt class="schedule-time">3:30 – 4:30 pm</dt>
+        <dd class="schedule-event">Cocktail Hour <span style="font-size:0.8rem;color:var(--sage);"> — &amp; PJ change time!</span></dd>
+      </div>
+      <div class="schedule-row">
+        <dt class="schedule-time">4:30 – 10:00 pm</dt>
+        <dd class="schedule-event">Reception</dd>
+      </div>
+    </dl>
+  </section>
+ 
+  <!-- DRESS CODE -->
+  <section class="card card-green" aria-labelledby="dresscode-heading">
+    <p class="section-label green" aria-hidden="true">Attire</p>
+    <h2 id="dresscode-heading">Dress Code</h2>
+ 
+    <div class="dress-split">
+      <article class="dress-block">
+        <h3 class="dress-block-label">Ceremony</h3>
+        <p>Business Casual</p>
+      </article>
+      <article class="dress-block pj">
+        <h3 class="dress-block-label">Reception</h3>
+        <p>Pajamas! 🌙</p>
+      </article>
+    </div>
+ 
+    <p class="pj-note">
+      We're throwing a <strong>slumber party reception</strong> — bring your favorite PJs and change into them during cocktail hour! Wearing pajamas is highly recommended but not required. Come as cozy (or as dressed up) as you like.
+    </p>
+  </section>
+ 
+  <!-- DRINKS -->
+  <section class="card" aria-labelledby="drinks-heading">
+    <p class="section-label" aria-hidden="true">Bar</p>
+    <h2 id="drinks-heading">Drinks Available</h2>
+ 
+    <ul class="info-pill-row" aria-label="Available beverages">
+      <li class="pill">🍺 Beer</li>
+      <li class="pill">🍷 Wine</li>
+      <li class="pill">🫧 Seltzer</li>
+    </ul>
+ 
+    <dl class="ticket-box">
+      <div class="ticket-item">
+        <dt class="ticket-desc">Complimentary drink tickets per guest</dt>
+        <dd class="ticket-num">4</dd>
+      </div>
+      <div class="ticket-item">
+        <dt class="ticket-desc">Cost per additional drink beyond your 4 tickets</dt>
+        <dd class="ticket-num">$3</dd>
+      </div>
+    </dl>
+ 
+    <p class="body-text">Drinks are served on a <strong>ticket system</strong> — 1 ticket equals 1 alcoholic drink of your choice.</p>
+    <p class="no-liquor"><span aria-hidden="true">⚠</span> <strong>No hard liquor is permitted on the premises.</strong></p>
+  </section>
+ 
+  <!-- FOOD -->
+  <section class="card card-green" aria-labelledby="food-heading">
+    <p class="section-label green" aria-hidden="true">Eats</p>
+    <h2 id="food-heading">Food</h2>
+ 
+    <ul class="info-pill-row" aria-label="Food options">
+      <li class="pill sage">🌮 Taco Food Truck</li>
+    </ul>
+ 
+    <p class="body-text">
+      Each guest will receive <strong>1 meal voucher</strong> redeemable at the taco food truck.
+      Any additional food beyond your voucher is available for purchase at your own discretion.
+    </p>
+  </section>
+ 
+  <!-- IMPORTANT NOTICES -->
+  <section class="card card-alert" aria-labelledby="notices-heading">
+    <p class="section-label" style="color:#e07070;" aria-hidden="true">Important</p>
+    <h2 id="notices-heading">Please Note</h2>
+ 
+    <ul>
+      <li class="alert-item">
+        <span class="alert-icon" aria-hidden="true">🔇</span>
+        <span>There is a <strong>10:00 pm noise ordinance</strong> in effect at the venue.</span>
+      </li>
+      <li class="alert-item">
+        <span class="alert-icon" aria-hidden="true">🚪</span>
+        <span>All guests must be <strong>off the premises by 10:30 pm</strong>. This is a no-exceptions rule enforced by the venue.</span>
+      </li>
+      <li class="alert-item">
+        <span class="alert-icon" aria-hidden="true">📋</span>
+        <span><strong>If you have not yet RSVP'd</strong> via the wedding website, please do so by <strong>July 31, 2026</strong> — guests without an RSVP will not have a reserved seat.</span>
+      </li>
+    </ul>
+  </section>
+ 
+  <!-- RSVP BANNER -->
+  <section class="rsvp-banner" aria-labelledby="rsvp-heading">
+    <h2 id="rsvp-heading">RSVP Deadline</h2>
+    <p>Haven't submitted your RSVP yet? Please do so as soon as possible through our wedding website.</p>
+    <p class="rsvp-deadline"><time datetime="2026-07-31">Deadline: July 31, 2026</time></p>
+    <a href="https://vanscoywedding.com" target="_blank" rel="noopener" class="btn">Visit vanscoywedding.com</a>
+  </section>
+ 
+  <!-- HONEYMOON FUND -->
+  <section class="honeymoon" aria-labelledby="honeymoon-heading">
+    <p class="section-label" aria-hidden="true">Gifts</p>
+    <h2 id="honeymoon-heading">Honeymoon Fund</h2>
+    <p>
+      In lieu of traditional gifts, we have opened a <strong>honeymoon fund</strong>.
+      Any contribution toward our honeymoon adventure is deeply appreciated — though of course, your presence is the greatest gift of all.
+    </p>
+    <a href="https://vanscoywedding.com" target="_blank" rel="noopener" class="btn">Contribute at vanscoywedding.com</a>
+  </section>
+ 
+</main>
+ 
+<footer>
+  <p>All details available at <a href="https://vanscoywedding.com" target="_blank" rel="noopener">vanscoywedding.com</a> &nbsp;·&nbsp; We can't wait to celebrate with you 🌿</p>
+</footer>
+ 
+</body>
+</html>
